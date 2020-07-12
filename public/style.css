@@ -1,56 +1,53 @@
-/* this file is loaded by index.html and styles the page */
-
-* {
-  box-sizing: border-box;
-}
+/****** Main Styling ******/
 
 body {
-  font-family: sans-serif;
-  margin: 2em 1em;
-  line-height: 1.5em;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	color: #222;
+	background-color: #FaFaFa;
+	text-align: center;
+	line-height: 1.4em;
 }
 
-h1 {
-  font-style: italic;
-  color: #373fff;
-  max-width: calc(100% - 5rem);
-  line-height: 1.1;
+.container {
+	padding: 0;
+	margin-top: 40px;
 }
 
-form {
-  background-color: #eee;
-  display: grid;
-  grid-gap: 1em;
-  padding: 1em;
-  max-width: 40ch;
+h3 {
+  margin-top: 30px;
 }
 
-input {
-  border: 1px solid silver;
-  display: block;
-  font-size: 16px;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
+.footer {
+	margin-top: 40px;
 }
 
-form button {
-  background-color: #bbbbf2;
-  border: 2px solid currentColor;
-  border-radius: .25em;
-  cursor: pointer;
-  font-size: inherit;
-  line-height: 1.4em;
-  padding: 0.25em 1em;
-  max-width: 20ch;
+.user-stories {
+  position: relative;
+  text-align: justify;
+  max-width: 700px;
+  margin: 15px auto;
+}
+code {
+  font-family: monospace;
+  padding: 2px;
+  color: black;
+  background-color: #fff;
+}
+ol {
+	list-style-position: outside;
+}
+ul {
+	list-style-type: none;
 }
 
-form button:hover {
-  background-color: lavender;
+li {
+  margin-bottom: 0.5em;
+}
+.user-stories li {
+  margin-bottom: 1em;
 }
 
-footer {
-  margin-top: 3em;
-  padding-top: 1.5em;
-  border-top: 1px solid lightgrey;
+a {
+	color: #2574A9;
 }
