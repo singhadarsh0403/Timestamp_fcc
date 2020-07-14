@@ -34,6 +34,26 @@ app.get("/api/timestamp/:date_string", (req, res) => {
   //A 4 digit number is a valid ISO-8601 for the beginning of that year
   //5 digits or more must be a unix time, until we reach a year 10,000 problem
   if (/\d{5,}/.test(dateString)) {
+    let dateInt = parseInt(dateString);
+    //Date regards numbers as unix timestamps, strings are processed differently
+    res.json({ unix: dateString, utc: new Date(dateInt).toUTCString() });
+  } else {
+    let dateObject = new Date(dateString);
+
+    if (dateObject.toString() === "Invalid Date") {
+      res.json({ error: "Invalid Date" });
+    } else {
+      res.json({ unix: dateObject.valueOf(), utc: dateObject.toUTCString() });
+    }
+  }
+});
+/*app.get("/api/timestamp/:date_string", (err,req, res) => {
+  
+  let dateString = req.params.date_string;
+
+  //A 4 digit number is a valid ISO-8601 for the beginning of that year
+  //5 digits or more must be a unix time, until we reach a year 10,000 problem
+  if (/\d{5,}/.test(dateString)) {
      var dateInt = parseInt(dateString);
     //Date regards numbers as unix timestamps, strings are processed differently
     res.json({ unix: dateString, utc: new Date(dateInt).toUTCString() });
@@ -42,13 +62,37 @@ app.get("/api/timestamp/:date_string", (req, res) => {
   let dateObject = new Date(dateString);
 
   if (dateObject.toString() === "Invalid Date") {
-    res.json({ error: "Invaid Date" });
+    res.send(err.status());
+    //res.json({'Error':'Error in date'});
+     //res.send(Error('error message to assert'))
+    //res.json({'unix':null,'natural':null});
   } else {
     res.json({ unix: dateObject.valueOf(), utc: dateObject.toUTCString() });
   }
-});
+});*/
 
 
+// app.get("/api/timestamp/:date_string", (req, res) => {
+//   let dateString = req.params.date_string;
+
+//   //A 4 digit number is a valid ISO-8601 for the beginning of that year
+//   //5 digits or more must be a unix time, until we reach a year 10,000 problem
+//   if (/\d{5,}/.test(dateString)) {
+//     let dateInt = parseInt(dateString);
+//     //Date regards numbers as unix timestamps, strings are processed differently
+//     res.json({ unix: dateString, utc: new Date(dateInt).toUTCString() });
+//   } else {
+//     let dateObject = new Date(dateString);
+
+//     if (dateObject.toString() === "Invalid Date") {
+//       //res.json(JSON.stringify({error: "Invalid date given"}));
+//       res.json({ error: "invaild date" });
+        
+//     } else {
+//       res.json({ unix: dateObject.valueOf(), utc: dateObject.toUTCString() });
+//     }
+//   }
+// });
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
